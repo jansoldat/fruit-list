@@ -1,33 +1,23 @@
 {
 	"compilerOptions": {
-		"target": "ES2022",
 		"useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
 		"types": ["vite/client"],
     "module": "ESNext",
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-
-		/* Bundler mode */
-		"moduleResolution": "Bundler",
-		"allowImportingTsExtensions": true,
-		"allowJs": true,
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noEmit": true,
 		"jsx": "react-jsx",
-
-		/* Linting */
+		"moduleResolution": "Bundler",
+		"resolveJsonModule": true,
+		"target": "ES2022",
 		"strict": true,
+		"allowJs": true,
+		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noUncheckedIndexedAccess": true
+		"baseUrl": ".",
 	},
-  "include": ["./src/*.ts", "./src/*.tsx"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"noEmit": true,
+  "include": ["./**/*.ts", "./src/*.tsx"],
+	"paths": {
+			"~/*": ["./src/*"],
+      "@/icon-name": ["src/components/ui/icons/name.d.ts", "./types/icon-name.d.ts"]
+	}
 }

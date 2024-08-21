@@ -30,7 +30,6 @@ const baseESLintConfig = {
     "no-unmodified-loop-condition": "error",
     "no-unreachable-loop": "error",
     "no-unused-private-class-members": "error",
-    "no-use-before-define": "error",
     "require-atomic-updates": "error",
     "camelcase": "error",
   }
@@ -62,7 +61,6 @@ const typescriptConfig = {
   },
   rules: {
     "@typescript-eslint/adjacent-overload-signatures": "error",
-    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/explicit-member-accessibility": "error",
@@ -165,27 +163,6 @@ const unicornConfig = {
     "unicorn/no-console-spaces": "error",
     "unicorn/no-null": "off",
     "unicorn/filename-case": "off",
-    "unicorn/prevent-abbreviations": [
-      "error",
-      {
-        "replacements": {
-          "db": false,
-          "arg": false,
-          "args": false,
-          "env": false,
-          "fn": false,
-          "func": {
-            "fn": true,
-            "function": false
-          },
-          "prop": false,
-          "props": false,
-          "ref": false,
-          "refs": false
-        },
-        "ignore": ["semVer", "SemVer"]
-      }
-    ]
   }
 }
 

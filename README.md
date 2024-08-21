@@ -19,6 +19,26 @@ And running the setup script (initializes git repository and installs playwright
 pnpm run setup
 ```
 
+#### Add new icon
+
+These icons were downloaded from https://icons.radix-ui.com/ which is licensed
+under MIT: https://github.com/radix-ui/icons/blob/master/LICENSE.
+
+> [!WARNING] It's important that you only add icons to this directory that the
+> application actually needs as there's no "tree-shaking" for sprites
+
+##### Add new icon
+
+```sh
+pnpm sly add
+```
+
+##### Update sprite
+
+```sh
+pnpm icons:build
+```
+
 ## Getting Started
 
 Unit testing is handled by React Testing Library and Vitest while End-to-End (E2E) Testing is conducted by Playwright.
