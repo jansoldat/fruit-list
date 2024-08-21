@@ -4,11 +4,19 @@ import { useTranslation } from "react-i18next";
 export const Home = () => {
 	const { t } = useTranslation();
 	const { data } = useQuery({
+		staleTime: 10000,
 		queryKey: ["fruitData"],
-		queryFn: () => fetch("/api/fruit/all").then((response) => response.json()),
+		queryFn: () =>
+			fetch("/api/fruit/all").then((res) => {
+				if (!res.ok) {
+					throw new Error("[TBD] Failed to fetch");
+				}
+				return res.json();
+			}),
 	});
 
 	console.log("🚀 ~ Home ~ data:", data);
+
 	return (
 		<div className="flex h-screen flex-col items-center justify-between">
 			<header className="w-full bg-muted p-4 py-6">
