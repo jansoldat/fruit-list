@@ -15,6 +15,8 @@
     "build:icons": "tsx ./other/build-icons.ts",
     "format": "prettier src/**/*.{ts,tsx} --write",
     "lint": "eslint --max-warnings 0",
+    "ts": "tsc --noEmit",
+    "ts:watch": "tsc --noEmit --watch",
     "lint:fix": "eslint --max-warnings 0 --fix",
     "dev": "vite",
     "test": "vitest run src/ && playwright test",
@@ -23,19 +25,23 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "build": "tsc && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.23",
+    "axios": "^1.7.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
     "i18next": "^23.12.2",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-i18next": "^15.0.1"
+    "react-i18next": "^15.0.1",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
@@ -59,6 +65,7 @@
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vitest/coverage-v8": "2.0.5",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.5",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -72,9 +79,11 @@
     "glob": "^11.0.0",
     "globals": "^15.9.0",
     "jsdom": "^24.1.1",
+    "msw": "^2.3.5",
     "node-html-parser": "^6.1.13",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "prop-types": "^15.8.1",
     "tailwindcss": "^3.4.9",
     "tsx": "^4.17.0",
@@ -82,6 +91,12 @@
     "typescript-eslint": "^8.0.1",
     "vite": "5.4.0",
     "vite-plugin-static-copy": "^1.0.6",
+    "vite-tsconfig-paths": "^5.0.1",
     "vitest": "2.0.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

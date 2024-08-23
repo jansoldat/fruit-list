@@ -14,10 +14,9 @@
 		"forceConsistentCasingInFileNames": true,
 		"baseUrl": ".",
 		"paths": {
-				"~/*": ["./src/*"],
 				"@/icon-name": ["src/components/ui/icons/name.d.ts", "./types/icon-name.d.ts"]
 		}
 	},
 	"noEmit": true,
-  "include": ["./**/*.ts", "./src/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx"],
 }

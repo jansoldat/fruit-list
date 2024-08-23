@@ -1,11 +1,21 @@
-import { expect, afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
-import matchers from "@testing-library/jest-dom/matchers";
+import 'dotenv/config';
 
-// extends Vitest's expect method with methods from react-testing-library
-expect.extend(matchers);
+import { cleanup } from '@testing-library/react';
+import { afterEach, beforeEach, vi, type MockInstance } from 'vitest';
 
-// runs a cleanup after each test case (e.g. clearing jsdom)
-afterEach(() => {
-	cleanup();
+afterEach(() => cleanup());
+
+export let consoleError: MockInstance<typeof console.error>;
+
+beforeEach(() => {
+	const originalConsoleError = console.error;
+	consoleError = vi.spyOn(console, 'error');
+	consoleError.mockImplementation(
+		(...args: Parameters<typeof console.error>) => {
+			originalConsoleError(...args);
+			throw new Error(
+				'Console error was called. Call consoleError.mockImplementation(() => {}) if this is expected.',
+			);
+		},
+	);
 });

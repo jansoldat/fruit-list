@@ -18,6 +18,7 @@ const baseESLintConfig = {
   name: "eslint",
   extends: [
     eslintJS.configs.recommended,
+    eslintConfigPrettier,
   ],
   rules: {
     "no-await-in-loop": "error",

@@ -1,21 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 export const Home = () => {
 	const { t } = useTranslation();
 	const { data } = useQuery({
-		staleTime: 10000,
-		queryKey: ["fruitData"],
+		queryKey: ['fruitData'],
 		queryFn: () =>
-			fetch("/api/fruit/all").then((res) => {
+			fetch('/api/fruit/all').then(res => {
 				if (!res.ok) {
-					throw new Error("[TBD] Failed to fetch");
+					throw new Error('[TBD] Failed to fetch');
 				}
 				return res.json();
 			}),
 	});
 
-	console.log("🚀 ~ Home ~ data:", data);
+	console.log('🚀 ~ Home ~ data:', data);
 
 	return (
 		<div className="flex h-screen flex-col items-center justify-between">
@@ -27,8 +26,8 @@ export const Home = () => {
 					</ul>
 				</nav>
 			</header>
-			<div className="bg-blue-300  font-bold w-screen h-screen flex flex-col justify-center items-center">
-				<p className="text-white text-6xl">{t("home.greeting")}</p>
+			<div className="flex h-screen w-screen flex-col items-center justify-center bg-blue-300 font-bold">
+				<p className="text-6xl text-white">{t('home.greeting')}</p>
 			</div>
 		</div>
 	);
