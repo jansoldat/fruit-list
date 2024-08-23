@@ -47,8 +47,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use pnpm from cache-and-install job
-        run: echo "Using pnpm from cache-and-install job"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Use cached pnpm store
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
       - name: Run ESLint
         run: pnpm run lint
