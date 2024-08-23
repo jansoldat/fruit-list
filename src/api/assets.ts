@@ -18,7 +18,7 @@ const getImagePath = (name: string) => {
 	return imagesMap?.[name] ?? null;
 };
 
-export const getUrl = (name: string) => {
+export const getAssetUrl = (name: string) => {
 	const imagePath = getImagePath(name);
 	if (!imagePath) {
 		return defaultImage;
