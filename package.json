@@ -22,8 +22,10 @@
     "test": "vitest run src/ && playwright test",
     "test:unit": "vitest src/",
     "test:unit:coverage": "vitest --coverage src/",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
+    "test:e2e": "pnpm run test:e2e:dev --silent",
+    "test:e2e:run": "cross-env CI=true playwright test",
+    "test:e2e:install": "npx playwright install --with-deps chromium",
+    "test:e2e:dev": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
