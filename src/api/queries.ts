@@ -1,4 +1,4 @@
-import { useQuery, UndefinedInitialDataOptions } from '@tanstack/react-query';
+import type { UndefinedInitialDataOptions } from '@tanstack/react-query';
 import axios from 'axios';
 import type { FruitItem } from 'src/types';
 
