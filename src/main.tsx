@@ -5,6 +5,7 @@ import App from './App';
 import './styles/tailwind.css';
 import './common/i18n';
 
+console.log('ssss', process.env.API_ENDPOINT);
 const enableMocking = async () => {
 	if (
 		process.env.NODE_ENV === 'test' ||

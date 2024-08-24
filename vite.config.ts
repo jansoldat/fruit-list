@@ -8,10 +8,12 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
+	const isDev = env.NODE_ENV === 'development';
 	return {
-		base: '/fruit-list/',
+		base: isDev ? undefined : '/fruit-list/',
 		define: {
 			'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+			'process.env.API_ENDPOINT': JSON.stringify(env.API_ENDPOINT),
 		},
 		plugins: [
 			react(),
@@ -28,14 +30,14 @@ export default defineConfig(({ mode }) => {
 		server: {
 			host: true,
 			strictPort: false,
-			proxy: {
-				'/api': {
-					target: 'https://www.fruityvice.com',
-					changeOrigin: true,
-					secure: false,
-					rewrite: path => path.replace(/^\/api/, '/api/'),
-				},
-			},
+			// proxy: {
+			// 	'/api': {
+			// 		target: 'https://www.fruityvice.com',
+			// 		changeOrigin: true,
+			// 		secure: false,
+			// 		rewrite: path => path.replace(/^\/api/, '/api/'),
+			// 	},
+			// },
 		},
 		test: {
 			environment: 'jsdom',

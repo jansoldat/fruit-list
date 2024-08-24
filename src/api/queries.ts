@@ -7,7 +7,9 @@ export const getAllFruitQueryOptions: () => UndefinedInitialDataOptions<
 > = () => ({
 	queryKey: ['fruitData'],
 	queryFn: async () => {
-		const res = await axios.get<FruitItem[]>('/api/fruit/all');
+		const res = await axios.get<FruitItem[]>(
+			`${process.env.API_ENDPOINT}/api/fruit/all`,
+		);
 		return res.data;
 	},
 });
