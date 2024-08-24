@@ -22,8 +22,25 @@ permissions:
   id-token: write
 
 jobs:
+  install-dependencies:
+    name: Install dependecies
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version: 20
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
   lint:
     name: ⬣ ESLint
+    needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
@@ -43,6 +60,7 @@ jobs:
 
   typescript:
     name: ʦ TypeScript
+    needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
