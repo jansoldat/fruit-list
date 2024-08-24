@@ -8,6 +8,7 @@ export const Home = () => {
 	return (
 		<Layout>
 			<main className="flex-1">
+				Testing
 				<List />
 			</main>
 			<aside className="flex-0 bg-blue-400"></aside>
