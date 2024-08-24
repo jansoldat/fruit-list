@@ -8,7 +8,7 @@ import './common/i18n';
 const enableMocking = async () => {
 	if (
 		process.env.NODE_ENV === 'test' ||
-		process.env.NODE_ENV !== 'development'
+		process.env.NODE_ENV === 'development'
 	) {
 		const { worker } = await import('./mocks/browser');
 		return worker.start();
