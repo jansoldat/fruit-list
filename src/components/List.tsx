@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getAllFruitQueryOptions } from '../api/queries';
 import { FruitListItem } from './FruitListItem';
 
-export const List = () => {
+interface Props {}
+
+export const List = (props: Props) => {
 	const { data: fruits, status, error } = useQuery(getAllFruitQueryOptions());
 
 	console.log('🚀 ~ List ~ fruits:', fruits);

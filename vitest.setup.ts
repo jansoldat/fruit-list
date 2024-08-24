@@ -1,28 +1,9 @@
 import 'dotenv/config';
-import { server } from './src/mocks/node';
 
 import { cleanup } from '@testing-library/react';
-import {
-	afterEach,
-	beforeAll,
-	afterAll,
-	beforeEach,
-	vi,
-	type MockInstance,
-} from 'vitest';
+import { afterEach, beforeEach, vi, type MockInstance } from 'vitest';
 
-afterEach(() => {
-	cleanup();
-	server.resetHandlers();
-});
-
-beforeAll(() => {
-	server.listen();
-});
-
-afterAll(() => {
-	server.close();
-});
+afterEach(() => cleanup());
 
 export let consoleError: MockInstance<typeof console.error>;
 

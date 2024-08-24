@@ -6,15 +6,12 @@ import './styles/tailwind.css';
 import './common/i18n';
 
 const enableMocking = async () => {
-	if (
-		process.env.NODE_ENV === 'test' ||
-		process.env.NODE_ENV !== 'development'
-	) {
-		const { worker } = await import('./mocks/browser');
-		return worker.start();
+	if (process.env.VITE_APP_ENVIRONMENT !== 'development') {
+		return;
 	}
 
-	return;
+	const { worker } = await import('./mocks/browser');
+	return worker.start();
 };
 
 enableMocking()
