@@ -11,6 +11,8 @@ import {
 	type MockInstance,
 } from 'vitest';
 
+import '@testing-library/jest-dom/vitest';
+
 afterEach(() => {
 	cleanup();
 	server.resetHandlers();

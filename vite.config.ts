@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
 			'process.env.API_ENDPOINT': JSON.stringify(env.API_ENDPOINT),
 		},
 		plugins: [
+			tsconfigPaths(),
 			react(),
 			viteStaticCopy({
 				targets: [
@@ -25,7 +26,6 @@ export default defineConfig(({ mode }) => {
 					},
 				],
 			}),
-			tsconfigPaths(),
 		],
 		server: {
 			host: true,
