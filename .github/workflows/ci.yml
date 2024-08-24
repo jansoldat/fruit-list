@@ -194,6 +194,9 @@ jobs:
 
       - name: 🚚 Build Project
         run: pnpm run build
+        env:
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          NODE_ENV: ${{ secrets.NODE_ENV }}
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
