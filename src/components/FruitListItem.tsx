@@ -18,7 +18,7 @@ export const FruitListItem = ({ fruit }: Props) => {
 				className="max-h-24 object-contain"
 				height={90}
 				loading="lazy"
-				src={getAssetUrl(fruit.name)}
+				src={getAssetUrl(fruit.name.toLowerCase())}
 				width={100}
 			/>
 

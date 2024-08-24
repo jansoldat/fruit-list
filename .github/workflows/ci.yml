@@ -123,6 +123,9 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
+      - name: 🤝 Copy test env vars
+        run: cp .env.example .env
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -148,8 +151,6 @@ jobs:
 
       - name: ⚡ Run Unit Tests
         run: pnpm run test:unit
-        env:
-          VITE_APP_ENVIRONMENT: 'test'
 
   e2e-tests:
     name: ⚡ Run E2E Tests
