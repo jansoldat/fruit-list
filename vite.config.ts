@@ -10,9 +10,7 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 	return {
 		define: {
-			'process.env.VITE_APP_ENVIRONMENT': JSON.stringify(
-				env.VITE_APP_ENVIRONMENT,
-			),
+			'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
 		},
 		plugins: [
 			react(),
