@@ -5,7 +5,15 @@ import { FruitListItem } from './FruitListItem';
 export const List = () => {
 	const { data: fruits, status, error } = useQuery(getAllFruitQueryOptions());
 
-	console.log('🚀 ~ List ~ fruits:', fruits);
+	const handleAdd = () => {
+		console.log('ADD');
+	};
+
+	const handleDelete = () => {
+		console.log('DELETE');
+	};
+
+	const selectedMap = new Map();
 
 	if (status === 'pending') return <div>PENDING</div>;
 	if (status === 'error') return <div>{error.message}</div>;
@@ -13,7 +21,13 @@ export const List = () => {
 	return (
 		<ul className="flex w-full flex-wrap items-center justify-center gap-6 delay-200">
 			{fruits.map(fruit => (
-				<FruitListItem key={fruit.id} fruit={fruit} />
+				<FruitListItem
+					key={fruit.id}
+					fruit={fruit}
+					selected={selectedMap}
+					onAdd={handleAdd}
+					onDelete={handleDelete}
+				/>
 			))}
 		</ul>
 	);

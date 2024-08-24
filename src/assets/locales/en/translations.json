@@ -1,5 +1,10 @@
 {
-    "home": {
-        "greeting": "Hello, world!"
+    "list": {
+        "item": {
+            "trash-tooltip": "Delete from Jar",
+            "minus-tooltip": "Decrease by 1",
+            "disabled-tooltip": "Can't have more than 9 same items in the Jar",
+            "count-tooltip": "Number of items in the Jar"
+        }
     }
 }

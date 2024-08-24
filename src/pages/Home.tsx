@@ -1,5 +1,5 @@
 // import { useTranslation } from 'react-i18next';
-import { Layout } from '../components/ui/Layout/Layout';
+import { Layout } from '../components/ui';
 import { List } from '../components/List';
 
 export const Home = () => {
@@ -8,7 +8,6 @@ export const Home = () => {
 	return (
 		<Layout>
 			<main className="flex-1">
-				Testing
 				<List />
 			</main>
 			<aside className="flex-0 bg-blue-400"></aside>
