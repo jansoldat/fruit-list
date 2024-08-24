@@ -10,13 +10,13 @@
 ## Installing dependencies
 
 ```
-pnpm install
+yarn install
 ```
 
 And running the setup script (initializes git repository and installs playwright)
 
 ```
-pnpm run setup
+yarn run setup
 ```
 
 #### Add new icon
@@ -30,13 +30,13 @@ under MIT: https://github.com/radix-ui/icons/blob/master/LICENSE.
 ##### Add new icon
 
 ```sh
-pnpm sly add
+yarn sly add
 ```
 
 ##### Update sprite
 
 ```sh
-pnpm icons:build
+yarn icons:build
 ```
 
 ## Getting Started
@@ -46,7 +46,7 @@ Unit testing is handled by React Testing Library and Vitest while End-to-End (E2
 If you'd like to run all tests, Unit and E2E alike, execute the following command:
 
 ```
-pnpm run test
+yarn run test
 ```
 
 ### Unit Testing
@@ -54,13 +54,13 @@ pnpm run test
 If you'd like to execute unit tests specifically, the below command will execute vitest:
 
 ```
-pnpm run test:unit
+yarn run test:unit
 ```
 
 If instead you are interested in coverage reporting, run:
 
 ```
-pnpm run test:unit:coverage
+yarn run test:unit:coverage
 ```
 
 ### End-to-End (E2E) Testing
@@ -68,19 +68,19 @@ pnpm run test:unit:coverage
 Running E2E tests use a similar syntax to running unit tests:
 
 ```
-pnpm run test:e2e
+yarn run test:e2e
 ```
 
 If you wish to see the reports, run:
 
 ```
-pnpm run test:e2e:report
+yarn run test:e2e:report
 ```
 
 ## Preparing for Deployment
 
 ```
-pnpm run build
+yarn run build
 ```
 
 and pointing your web server to the generated `index.html` file found at `dist/index.html`

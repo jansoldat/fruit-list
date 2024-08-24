@@ -12,110 +12,53 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  BUILD_PATH: '.'
+
 permissions:
   actions: write
-  contents: read
-  id-token: write
+  contents: write
   pages: write
+  id-token: write
 
 jobs:
-  cache-and-install:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: 📥 Install deps
-        run: pnpm install
-
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
-    needs: cache-and-install
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Restore pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: 📥 Install deps
-        run: pnpm install --frozen-lockfile
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
 
       - name: 🔬 Lint
-        run: pnpm run lint
+        run: yarn run lint
 
   typescript:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
-    needs: cache-and-install
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Restore pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: 📥 Install deps
-        run: pnpm install --frozen-lockfile
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
 
       - name: 🔎 TypeScript Check
-        run: pnpm run ts
+        run: yarn run ts
 
   unit-tests:
     name: ⚡ Unit Tests
@@ -125,34 +68,20 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🤝 Copy test env vars
-        run: cp .env.example .env
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Restore pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
 
-      - name: 📥 Install deps
-        run: pnpm install --frozen-lockfile
+      - name: 🤝 Copy test env vars
+        run: cp .env.example .env
 
       - name: ⚡ Run Unit Tests
-        run: pnpm run test:unit
+        run: yarn run test:unit
 
   e2e-tests:
     name: 🎭 Run E2E Tests
@@ -162,37 +91,30 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🤝 Copy test env vars
-        run: cp .env.example .env
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Restore pnpm cache
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
+      - name: 🤝 Copy test env vars
+        run: cp .env.example .env
+
+      - name: Build
+        run: yarn run build
+
+      - name: Cache playwright binaries
         uses: actions/cache@v4
+        id: playwright-cache
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: 📥 Install deps
-        run: pnpm install --frozen-lockfile
-
-      - name: 🛠 Install Playwright Browsers
-        run: pnpm run test:e2e:install
-
-      - name: 🏗 Build
-        run: pnpm run build
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright
+      - run: yarn run test:e2e:install
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: 🎭 Playwright tests
         run: npx playwright test
@@ -210,38 +132,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, typescript, unit-tests, e2e-tests]
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 📥 Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
-
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Restore pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: 📥 Install deps
-        run: pnpm install --frozen-lockfile
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
 
       - name: 🚚 Build Project
-        run: pnpm run build
+        run: yarn run build
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - run: yarn export
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./out
