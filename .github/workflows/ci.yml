@@ -16,6 +16,7 @@ permissions:
   actions: write
   contents: read
   id-token: write
+  pages: write
 
 jobs:
   cache-and-install:
