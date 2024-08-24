@@ -9,6 +9,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 	return {
+		base: '/fruit-list/',
 		define: {
 			'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
 		},
