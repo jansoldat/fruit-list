@@ -54,3 +54,5 @@ export const Icon: FC<IconProps> = ({
 		</svg>
 	);
 };
+
+Icon.displayName = 'Icon';

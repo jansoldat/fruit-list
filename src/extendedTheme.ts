@@ -71,7 +71,7 @@ export const extendedTheme = {
 		/** 28px size / 36px high / bold */
 		h4: ['1.75rem', { lineHeight: '2.25rem', fontWeight: '700' }],
 		/** 24px size / 32px high / bold */
-		h5: ['1.5rem', { lineHeight: '2rem', fontWeight: '700' }],
+		h5: ['1.25rem', { lineHeight: '2rem', fontWeight: '700' }],
 		/** 16px size / 20px high / bold */
 		h6: ['1rem', { lineHeight: '1.25rem', fontWeight: '700' }],
 
@@ -96,17 +96,21 @@ export const extendedTheme = {
 		button: ['0.75rem', { lineHeight: '1rem', fontWeight: '700' }],
 	},
 	keyframes: {
-		'accordion-down': {
-			from: { height: '0' },
-			to: { height: 'var(--radix-accordion-content-height)' },
+		slideDown: {
+			'0%': { height: '0' },
+			'100%': { height: `var(--radix-accordion-content-height)` },
 		},
-		'accordion-up': {
-			from: { height: 'var(--radix-accordion-content-height)' },
-			to: { height: '0' },
+		slideUp: {
+			'0%': {
+				height: `var(--radix-accordion-content-height)`,
+			},
+			'100%': {
+				height: '0',
+			},
 		},
 	},
 	animation: {
-		'accordion-down': 'accordion-down 0.2s ease-out',
-		'accordion-up': 'accordion-up 0.2s ease-out',
+		'slide-down': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+		'slide-up': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
 	},
 } satisfies Config['theme'];

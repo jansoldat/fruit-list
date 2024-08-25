@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import './styles/tailwind.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 import './common/i18n';
 
 const enableMocking = async () => {

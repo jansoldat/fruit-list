@@ -1,10 +1,30 @@
 {
+    "error": {
+        "500": {
+            "title": "Internal Server Error.",
+            "message": "We are already working to solve the problem."
+        }
+    },
     "list": {
         "item": {
             "trash-tooltip": "Delete from Jar",
             "minus-tooltip": "Decrease by 1",
             "disabled-tooltip": "Can't have more than 9 same items in the Jar",
             "count-tooltip": "Number of items in the Jar"
+        },
+        "toolbar-groupBy": {
+            "label-none": "None",
+            "label-family": "Family",
+            "label-genus": "Genus",
+            "label-order": "Order"
+
+        },
+        "toolbar-sortBy": {
+            "none": "None",
+            "name-asc": "Name A → Z",
+            "name-desc": "Name Z → A",
+            "calories-asc": "Calories from lowest",
+            "calories-desc": "Calories from highest"
         }
     }
 }
