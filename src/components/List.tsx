@@ -1,9 +1,24 @@
-import { useQuery } from '@tanstack/react-query';
-import { getAllFruitQueryOptions } from '../api/queries';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useMemo, type FC } from 'react';
+import type { FruitItem } from '../types';
 import { FruitListItem } from './FruitListItem';
+import { Error50x } from './ui';
+import { cn } from '../common/utils';
 
-export const List = () => {
-	const { data: fruits, status, error } = useQuery(getAllFruitQueryOptions());
+export type ListProps = Pick<
+	UseQueryResult<FruitItem[], Error>,
+	'data' | 'status'
+> & {
+	className?: string;
+};
+
+export const List: FC<ListProps> = ({ data, status, className }) => {
+	const selected = new Map();
+
+	const loadingArray = useMemo<{ id: number }[]>(
+		() => new Array(16).fill(null).map(() => ({ id: Math.random() })),
+		[],
+	);
 
 	const handleAdd = () => {
 		console.log('ADD');
@@ -13,22 +28,26 @@ export const List = () => {
 		console.log('DELETE');
 	};
 
-	const selectedMap = new Map();
-
-	if (status === 'pending') return <div>PENDING</div>;
-	if (status === 'error') return <div>{error.message}</div>;
+	if (status === 'error') return <Error50x />;
 
 	return (
-		<ul className="flex w-full flex-wrap items-center justify-center gap-6 delay-200">
-			{fruits.map(fruit => (
-				<FruitListItem
-					key={fruit.id}
-					fruit={fruit}
-					selected={selectedMap}
-					onAdd={handleAdd}
-					onDelete={handleDelete}
-				/>
-			))}
+		<ul
+			className={cn(
+				'flex w-full flex-wrap items-center justify-center gap-6',
+				className,
+			)}
+		>
+			{status === 'pending'
+				? loadingArray.map(fruit => <FruitListItem key={fruit.id} isLoading />)
+				: data?.map(fruit => (
+						<FruitListItem
+							key={fruit.id}
+							fruit={fruit}
+							selected={selected}
+							onAdd={handleAdd}
+							onDelete={handleDelete}
+						/>
+					))}
 		</ul>
 	);
 };
