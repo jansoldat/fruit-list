@@ -1,21 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { FruitItem, GroupKey } from '../types';
 import { convertArrayToMap } from '../common/utils';
 
-export const useGrouping = (data?: FruitItem[]) => {
+export const useGrouping = (data: FruitItem[] = []) => {
 	const [groupKey, setGroupKey] = useState<GroupKey>('none');
-	const [groupData, setGroupData] = useState<Map<string, FruitItem[]>>(
-		new Map(),
-	);
+
+	const groupedData = useMemo(() => {
+		if (groupKey === 'none') return new Map<string, FruitItem[]>();
+		return convertArrayToMap(data, groupKey, true);
+	}, [data, groupKey]);
 
 	const handleGroupChange = (newKey: GroupKey) => {
 		setGroupKey(newKey);
 	};
 
-	useEffect(() => {
-		if (!data || groupKey === 'none') return;
-		setGroupData(convertArrayToMap(data, groupKey, true));
-	}, [data, groupKey]);
-
-	return { groupKey, handleGroupChange, groupData };
+	return { groupKey, handleGroupChange, groupedData };
 };

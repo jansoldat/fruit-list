@@ -17,7 +17,7 @@ export const Home = () => {
 
 const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 	const { sortedData, handleSortChange, sorting } = useSorting(data);
-	const { groupKey, groupData, handleGroupChange } = useGrouping(sortedData);
+	const { groupKey, handleGroupChange, groupedData } = useGrouping(sortedData);
 
 	return (
 		<Layout>
@@ -32,7 +32,7 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 				{groupKey === 'none' ? (
 					<List {...props} data={sortedData} />
 				) : (
-					<GroupView groupData={groupData} />
+					<GroupView groupData={groupedData} />
 				)}
 			</main>
 			<aside className="flex-0 bg-blue-400"></aside>
