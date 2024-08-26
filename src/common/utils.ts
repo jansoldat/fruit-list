@@ -50,6 +50,10 @@ export const convertArrayToMap = <
 	if (shouldSort) {
 		return new Map(
 			[...map.entries()].sort(([keyA], [keyB]) => {
+				if (typeof keyA === 'string' && typeof keyB === 'string') {
+					return keyA.trim().localeCompare(keyB.trim());
+				}
+
 				if (keyA < keyB) return -1;
 				if (keyA > keyB) return 1;
 				return 0;

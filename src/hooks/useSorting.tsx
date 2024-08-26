@@ -1,35 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { FruitItem, Sorting } from '../types';
 
-const getSortItem = (item: FruitItem, key: string) =>
-	key === 'calories' ? item.nutritions.calories : item.name;
+const getSortValue = (item: FruitItem, key: keyof FruitItem | 'calories') => {
+	if (key === 'calories') {
+		return item.nutritions.calories;
+	}
+	return item.name.trim().toLowerCase();
+};
 
-export const useSorting = (data?: FruitItem[]) => {
+const sortData = (arr: FruitItem[], sorting: Sorting) => {
+	if (sorting === 'none') return arr;
+
+	const [key, direction] = sorting.split('-') as [
+		keyof FruitItem | 'calories',
+		'asc' | 'desc',
+	];
+
+	return [...arr].sort((a, b) => {
+		const valA = getSortValue(a, key);
+		const valB = getSortValue(b, key);
+
+		if (valA < valB) return direction === 'asc' ? -1 : 1;
+		if (valA > valB) return direction === 'asc' ? 1 : -1;
+		return 0;
+	});
+};
+
+export const useSorting = (data: FruitItem[] = []) => {
 	const [sorting, setSorting] = useState<Sorting>('none');
-	const [sortedData, setSortedData] = useState<FruitItem[] | undefined>(data);
+
+	const sortedData = useMemo(() => sortData(data, sorting), [data, sorting]);
 
 	const handleSortChange = (newSort: Sorting) => {
 		setSorting(newSort);
 	};
-
-	const sortData = (arr: FruitItem[], sorting: Sorting) => {
-		if (sorting === 'none') return arr;
-
-		return arr.slice().sort((a, b) => {
-			const [key, direction] = sorting.split('-');
-			const valA = getSortItem(a, key);
-			const valB = getSortItem(b, key);
-
-			if (valA < valB) return direction === 'asc' ? -1 : 1;
-			if (valA > valB) return direction === 'asc' ? 1 : -1;
-			return 0;
-		});
-	};
-
-	useEffect(() => {
-		if (!data) return;
-		setSortedData(sortData(data, sorting));
-	}, [data, sorting]);
 
 	return { sorting, handleSortChange, sortedData };
 };
