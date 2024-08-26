@@ -26,5 +26,13 @@
             "calories-asc": "Calories from lowest",
             "calories-desc": "Calories from highest"
         }
-    }
+    },
+    "jar": {
+        "open": "Open Jar",
+        "heading": "Your Jar",
+        "empty": "No fruit has been selected. Please select some fruit.",
+        "item": "{{count}}x {{name}} = Calories: {{totalCalories}} kcal",
+        "total": "Total Calories: {{totalCalories}} kcal"
+    },
+    "copyright": "© {{year}} Jan Soldát"
 }
