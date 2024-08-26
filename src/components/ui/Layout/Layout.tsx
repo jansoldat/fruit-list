@@ -11,7 +11,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
 			<header className="w-full bg-secondary p-4 py-6">
 				<Navbar />
 			</header>
-			<div className="flex-1 flex-col p-8">{children}</div>
+			<div className="w-full flex-1 flex-col p-8">{children}</div>
 			<footer className="w-full bg-secondary p-4 text-center">
 				<p>{t('copyright', { year })}</p>
 			</footer>
