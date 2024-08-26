@@ -12,7 +12,7 @@ export const Picture = ({ isLoading, fruit }: FruitListItemProps) => {
 	return (
 		<img
 			alt={fruit.name}
-			className="max-[90px] object-contain"
+			className="h-[90px] object-contain"
 			height={90}
 			loading="lazy"
 			src={getAssetUrl(fruit.name.toLowerCase())}

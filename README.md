@@ -1,11 +1,50 @@
 # Fruit List
 
+This project, fruit-list, was developed by Jan Soldat as part of an interview
+task for the company Finofo. The application is designed to display a list of
+fruits, allowing users to interact with the data in various ways.
+
+[Live app](https://jansoldat.github.io/fruit-list/) |
+[Node.js server](https://github.com/jansoldat/fruit-list-api.git) |
+[Data source](https://www.fruityvice.com/)
+
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-- [Testing](#testing)
-- [Preparing for Deployment](#preparing-for-deployment)
-- [Installed Packages](#installed-packages)
+- [Key Features ](#key-features)
+- [Deployment](#deployment)
+- [Installing dependencies](#installing-dependencies)
+
+## Key Features
+
+- **CORS Policy**: To bypass CORS policy restrictions, a Node.js server was
+  created. You can find the server implementation here:
+  [Node.js server](https://github.com/jansoldat/fruit-list-api.git)
+- **State Management:** The application uses Zustand for efficient and simple
+  state management.
+- **Image Handling**: Cloudinary is used for lazy loading images to ensure
+  faster load times and better performance.
+- **Unit Testing**: The project includes comprehensive unit tests using Vitest
+  and React Testing Library.
+- **TypeScript**: TypeScript is used throughout the project for type safety and
+  better developer experience.
+- **Linting**: ESLint is integrated to maintain code quality and consistency.
+- **Mocking Assets**: MSW (Mock Service Worker) is utilized to mock API
+  responses and assets during development and testing.
+- **CI/CD Pipeline**: A CI/CD pipeline has been implemented using GitHub Actions
+  to automate testing and deployment processes.
+- **End-to-End Testing**: Playwright is used for E2E testing. A basic E2E test
+  has been implemented due to time constraints.
+- **Data Fetching**: React Query is used for efficient data fetching and state
+  synchronization with the backend.
+- **Styling**: Tailwind CSS is used for styling, providing a clean and
+  responsive design.
+- **Localization & Theming**: The solution is ready for multiple languages and
+  themes, ensuring a versatile and user-friendly experience.
+
+## Deployment
+
+The project is hosted on GitHub Pages and can be accessed at:
+[Live app](https://jansoldat.github.io/fruit-list/)
 
 ## Installing dependencies
 
@@ -13,7 +52,8 @@
 pnpm install
 ```
 
-And running the setup script (initializes git repository and installs playwright)
+And running the setup script (initializes git repository and installs
+playwright)
 
 ```
 pnpm run setup
@@ -24,8 +64,8 @@ pnpm run setup
 These icons were downloaded from https://icons.radix-ui.com/ which is licensed
 under MIT: https://github.com/radix-ui/icons/blob/master/LICENSE.
 
-> [!WARNING] It's important that you only add icons to this directory that the
-> application actually needs as there's no "tree-shaking" for sprites
+> It's important that you only add icons to this directory that the application
+> actually needs as there's no "tree-shaking" for sprites
 
 ##### Add new icon
 
@@ -41,9 +81,11 @@ pnpm icons:build
 
 ## Getting Started
 
-Unit testing is handled by React Testing Library and Vitest while End-to-End (E2E) Testing is conducted by Playwright.
+Unit testing is handled by React Testing Library and Vitest while End-to-End
+(E2E) Testing is conducted by Playwright.
 
-If you'd like to run all tests, Unit and E2E alike, execute the following command:
+If you'd like to run all tests, Unit and E2E alike, execute the following
+command:
 
 ```
 pnpm run test
@@ -51,7 +93,8 @@ pnpm run test
 
 ### Unit Testing
 
-If you'd like to execute unit tests specifically, the below command will execute vitest:
+If you'd like to execute unit tests specifically, the below command will execute
+vitest:
 
 ```
 pnpm run test:unit
@@ -83,49 +126,5 @@ pnpm run test:e2e:report
 pnpm run build
 ```
 
-and pointing your web server to the generated `index.html` file found at `dist/index.html`
-
-## Installed Packages
-
-### Base
-
-- [TypeScript](https://www.typescriptlang.org)
-- [Vite](https://vitejs.dev)
-- [React](https://react.dev)
-
-### Routing
-
-- [TanStack Router](https://tanstack.com/router/v1)
-
-### Linting & Formatting
-
-- [ESLint](https://eslint.org)
-  - [typescript-eslint](https://typescript-eslint.io)
-  - [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)
-  - [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react#readme)
-  - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
-  - [eslint-plugin-react-refresh](https://github.com/ArnaudBarre/eslint-plugin-react-refresh)
-  - [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn#readme)
-  - [eslint-plugin-storybook](https://github.com/storybookjs/eslint-plugin-storybook#readme)
-- [Prettier](https://prettier.io)
-
-### State Management
-
-- [TanStack Query (React Query)](https://tanstack.com/query/latest)
-
-### UI
-
-- [Tailwind CSS](https://tailwindcss.com)
-
-### Testing
-
-- [Vitest](https://vitest.dev)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Playwright](https://playwright.dev)
-
-### Other
-
-- [i18next-browser-languageDetector](https://github.com/i18next/i18next-browser-languageDetector)
-- [i18next](https://www.i18next.com/)
-- [react-i18next](https://react.i18next.com/)
-- [ts-reset](https://github.com/total-typescript/ts-reset#readme)
+and pointing your web server to the generated `index.html` file found at
+`dist/index.html`
