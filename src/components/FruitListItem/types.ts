@@ -4,14 +4,14 @@ export type FruitListItemProps =
 	| {
 			isLoading: true;
 			fruit?: never;
-			selected?: never;
+			count?: never;
 			onDelete?: never;
 			onAdd?: never;
 	  }
 	| {
 			isLoading?: never;
 			fruit: FruitItem;
-			selected: Map<number, number>;
-			onDelete: () => void;
-			onAdd: () => void;
+			count?: number;
+			onDelete: (id: number) => void;
+			onAdd: (id: number) => void;
 	  };

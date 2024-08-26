@@ -46,7 +46,7 @@ export const Toolbar: FC<Props> = ({
 	);
 
 	return (
-		<div className="mb-8 inline-flex gap-6">
+		<div className="inline-flex w-full gap-6">
 			<div>
 				<Label htmlFor="group-by">Group by:</Label>
 				<Select

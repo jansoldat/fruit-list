@@ -4,5 +4,9 @@ export type IconName =
 	| 'check'
 	| 'chevron-down'
 	| 'chevron-up'
+	| 'cross-2'
+	| 'github-logo'
+	| 'linkedin-logo'
 	| 'minus'
+	| 'plus'
 	| 'trash';

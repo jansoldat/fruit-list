@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { FruitItem } from '~/src/types';
 import { Button, Icon, Tooltip } from '../ui';
-import { isDisabled } from './helpers';
+import { canAddFruit } from '../utils/helpers';
 
 type Props =
 	| {
@@ -30,7 +30,7 @@ export const CounterHeader: FC<CounterProps> = ({ count, onDelete }) => {
 	if (!count) return null;
 
 	const iconName = count === 1 ? 'trash' : 'minus';
-	const tooltipContentKey = isDisabled(count)
+	const tooltipContentKey = canAddFruit(count)
 		? t('list.item.disabled-tooltip')
 		: t(`list.item.${iconName}-tooltip`);
 

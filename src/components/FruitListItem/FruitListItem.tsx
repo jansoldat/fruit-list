@@ -1,16 +1,23 @@
 import { Button } from '../ui';
+import { canAddFruit } from '../utils/helpers';
 import { Picture, Subtitle, Title } from './ContentComponents';
 import { CounterHeader } from './CounterHeader';
-import { isDisabled } from './helpers';
+
 import type { FruitListItemProps } from './types';
 
 export const FruitListItem = (props: FruitListItemProps) => {
-	const { fruit, onDelete, onAdd, selected, isLoading } = props;
-	const count = isLoading ? 0 : selected.get(fruit.id);
+	const { onDelete, onAdd, count, isLoading } = props;
+
+	const protectedFn = (fn?: (id: number) => void) =>
+		isLoading
+			? undefined
+			: () => {
+					fn?.(props.fruit.id);
+				};
 
 	return (
 		<li className="relative flex w-full min-w-48 max-w-56 flex-col items-center justify-center rounded-lg border bg-card p-3 py-6 shadow-lg">
-			<CounterHeader count={count} onDelete={onDelete} />
+			<CounterHeader count={count} onDelete={protectedFn(onDelete)} />
 
 			<Picture {...props} />
 			<h5 className="mt-3 overflow-hidden text-ellipsis whitespace-nowrap text-caption">
@@ -21,9 +28,9 @@ export const FruitListItem = (props: FruitListItemProps) => {
 			</span>
 
 			<Button
-				disabled={isDisabled(count) || isLoading}
+				disabled={canAddFruit(count) || isLoading}
 				size="full"
-				onClick={onAdd}
+				onClick={protectedFn(onAdd)}
 			>
 				Add
 			</Button>

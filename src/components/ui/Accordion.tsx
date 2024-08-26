@@ -55,17 +55,17 @@ const AccordionTrigger = React.forwardRef<
 	<Accordion.Header className="flex">
 		<Accordion.Trigger
 			className={cn(
-				'group flex flex-1 cursor-pointer items-center justify-between border-b bg-muted/30 px-4 py-4 text-lg font-bold text-primary outline-none hover:bg-muted/40',
+				'group flex flex-1 cursor-pointer items-center border-b bg-muted/30 px-4 py-4 text-lg font-bold text-primary outline-none hover:bg-muted/40',
 				className,
 			)}
 			{...props}
 			ref={forwardedRef}
 		>
-			{children}
 			<Icon
 				className="text-primary transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
 				name="chevron-down"
 			/>
+			{children}
 		</Accordion.Trigger>
 	</Accordion.Header>
 ));
@@ -76,7 +76,7 @@ const AccordionContent = React.forwardRef<
 >(({ children, className, ...props }, forwardedRef) => (
 	<Accordion.Content
 		className={cn(
-			'data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden bg-background',
+			'overflow-hidden bg-background data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down',
 			className,
 		)}
 		{...props}

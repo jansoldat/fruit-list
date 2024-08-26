@@ -108,9 +108,19 @@ export const extendedTheme = {
 				height: '0',
 			},
 		},
+		overlayShow: {
+			from: { opacity: '0' },
+			to: { opacity: '1' },
+		},
+		contentShow: {
+			from: { opacity: '0', transform: 'translate(-50%, -48%) scale(0.96)' },
+			to: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' },
+		},
 	},
 	animation: {
 		'slide-down': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
 		'slide-up': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+		overlayShow: 'overlayShow 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+		contentShow: 'contentShow 300ms cubic-bezier(0.16, 1, 0.3, 1)',
 	},
 } satisfies Config['theme'];

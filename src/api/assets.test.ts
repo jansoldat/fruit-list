@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { getAssetUrl, CLOUDINARY_URL } from './assets'; // Replace with the correct path to your module
-import defaultImage from '../assets/defaultFruitImage.webp';
+import defaultImage from '../assets/imagePlaceholder.png';
 
 describe('getAssetUrl', () => {
 	it('should return the correct Cloudinary URL for a known fruit', () => {
 		const name = 'watermelon';
-		const expectedUrl = `${CLOUDINARY_URL}/watermelon_jrkuw2.webp`;
+		const expectedUrl = `${CLOUDINARY_URL}/v1724710451/watermelon_fotgwn.webp`;
 		const result = getAssetUrl(name);
 		expect(result).toBe(expectedUrl);
 	});

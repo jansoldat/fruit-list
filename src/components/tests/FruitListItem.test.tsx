@@ -30,10 +30,6 @@ const mockFruit = {
 	},
 };
 
-const selectedOneTime = new Map([[1, 1]]);
-const selectedNineTimes = new Map([[1, 9]]);
-const emptySelected = new Map<number, number>();
-
 const onDeleteMock = vi.fn();
 const onAddMock = vi.fn();
 
@@ -45,8 +41,8 @@ describe('FruitListItem', () => {
 	it('renders the fruit name and calories', () => {
 		render(
 			<FruitListItem
+				count={0}
 				fruit={mockFruit}
-				selected={emptySelected}
 				onAdd={onAddMock}
 				onDelete={onDeleteMock}
 			/>,
@@ -62,8 +58,8 @@ describe('FruitListItem', () => {
 	it('renders the Counter component when count is greater than 0', () => {
 		render(
 			<FruitListItem
+				count={1}
 				fruit={mockFruit}
-				selected={selectedOneTime}
 				onAdd={onAddMock}
 				onDelete={onDeleteMock}
 			/>,
@@ -75,8 +71,8 @@ describe('FruitListItem', () => {
 	it('calls onAdd when the "Add" button is clicked', async () => {
 		render(
 			<FruitListItem
+				count={2}
 				fruit={mockFruit}
-				selected={selectedOneTime}
 				onAdd={onAddMock}
 				onDelete={onDeleteMock}
 			/>,
@@ -91,8 +87,8 @@ describe('FruitListItem', () => {
 	it('calls onDelete when the delete button is clicked', async () => {
 		render(
 			<FruitListItem
+				count={1}
 				fruit={mockFruit}
-				selected={selectedOneTime}
 				onAdd={onAddMock}
 				onDelete={onDeleteMock}
 			/>,
@@ -104,13 +100,11 @@ describe('FruitListItem', () => {
 		expect(onDeleteMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('disables the add button when count is 10 or more', () => {
-		const modifiedMockFruit = { ...mockFruit, count: 10 };
-
+	it('disables the add button when count is 9 or more', () => {
 		render(
 			<FruitListItem
-				fruit={modifiedMockFruit}
-				selected={selectedNineTimes}
+				count={9}
+				fruit={mockFruit}
 				onAdd={onAddMock}
 				onDelete={onDeleteMock}
 			/>,
