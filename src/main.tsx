@@ -25,7 +25,7 @@ enableMocking()
 			const root = ReactDOM.createRoot(rootElement);
 			root.render(
 				<React.StrictMode>
-					<React.Suspense fallback="loading">
+					<React.Suspense fallback="loading...">
 						<App />
 					</React.Suspense>
 				</React.StrictMode>,

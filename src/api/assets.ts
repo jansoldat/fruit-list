@@ -8,7 +8,7 @@ import defaultImage from '../assets/imagePlaceholder.png';
 */
 
 export const CLOUDINARY_URL =
-	'https://res.cloudinary.com/djxcun8mo/image/upload/f_auto/';
+	'https://res.cloudinary.com/djxcun8mo/image/upload/c_auto,h_90,f_auto,g_auto/';
 
 const getImagePath = (name: string) => {
 	const imagesMap: Record<string, string> = {

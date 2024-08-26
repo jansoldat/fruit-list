@@ -5,14 +5,14 @@ import type { FruitListItemProps } from './types';
 export const Picture = ({ isLoading, fruit }: FruitListItemProps) => {
 	if (isLoading) {
 		return (
-			<Skeleton className="max-h-24 object-contain" height={90} width={100} />
+			<Skeleton className="max-[90px] object-contain" height={90} width={100} />
 		);
 	}
 
 	return (
 		<img
 			alt={fruit.name}
-			className="max-h-24 object-contain"
+			className="max-[90px] object-contain"
 			height={90}
 			loading="lazy"
 			src={getAssetUrl(fruit.name.toLowerCase())}
