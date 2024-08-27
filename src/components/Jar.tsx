@@ -63,8 +63,8 @@ export const Jar = () => {
 			{isEmpty ? (
 				<div />
 			) : (
-				<div className="inline-flex justify-center gap-6">
-					<h4 className="text-h4">{t('jar.total', { totalCalories })}</h4>
+				<div className="inline-flex flex-wrap items-center justify-center gap-6">
+					<h5 className="text-h5">{t('jar.total', { totalCalories })}</h5>
 					<Button variant="destructive" onClick={removeAll}>
 						{t('jar.remove-all')}
 					</Button>
