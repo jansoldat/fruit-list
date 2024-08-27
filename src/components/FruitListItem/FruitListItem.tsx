@@ -1,13 +1,15 @@
 import { cn } from '~/src/common/utils';
-import { Button } from '../ui';
+import { Button, ConditionalTooltip } from '../ui';
 import { canAddFruit } from '../utils/helpers';
 import { Picture, Subtitle, Title } from './ContentComponents';
 import { CounterHeader } from './CounterHeader';
 
 import type { FruitListItemProps } from './types';
+import { useTranslation } from 'react-i18next';
 
 export const FruitListItem = (props: FruitListItemProps) => {
 	const { onDelete, onAdd, count, isLoading } = props;
+	const { t } = useTranslation();
 
 	const protectedFn = (fn?: (id: number) => void) =>
 		isLoading
@@ -15,6 +17,8 @@ export const FruitListItem = (props: FruitListItemProps) => {
 			: () => {
 					fn?.(props.fruit.id);
 				};
+
+	const isDisabled = canAddFruit(count) || isLoading;
 
 	return (
 		<li
@@ -33,13 +37,20 @@ export const FruitListItem = (props: FruitListItemProps) => {
 				<Subtitle {...props} />
 			</span>
 
-			<Button
-				disabled={canAddFruit(count) || isLoading}
-				size="full"
-				onClick={protectedFn(onAdd)}
+			<ConditionalTooltip
+				content={t(`list.item.disabled-tooltip`)}
+				shouldHide={!isDisabled}
 			>
-				Add
-			</Button>
+				<span className="w-full" tabIndex={0}>
+					<Button
+						disabled={isDisabled}
+						size="full"
+						onClick={protectedFn(onAdd)}
+					>
+						{t('list.item.add-button')}
+					</Button>
+				</span>
+			</ConditionalTooltip>
 		</li>
 	);
 };

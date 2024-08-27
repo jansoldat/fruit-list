@@ -53,13 +53,13 @@ export const Toolbar: FC<Props> = ({
 		<div className="mb-8 flex w-full flex-row flex-wrap gap-4">
 			<div className="inline-flex flex-nowrap items-center">
 				<Label className="" htmlFor="search-by">
-					Search by:
+					{t('tooltip.search-label')}:
 				</Label>
 				<Input
 					className="ml-2 w-56 shadow-lg"
 					id="search-by"
 					name="search"
-					placeholder="Search"
+					placeholder={t('tooltip.search-placeholder')}
 					type="search"
 					value={searchTerm}
 					onChange={event => {
@@ -68,7 +68,7 @@ export const Toolbar: FC<Props> = ({
 				/>
 			</div>
 			<div className="inline-flex flex-nowrap items-center">
-				<Label htmlFor="group-by">Group by:</Label>
+				<Label htmlFor="group-by">{t('tooltip.group-label')}:</Label>
 				<Select
 					defaultValue="none"
 					id="group-by"
@@ -79,7 +79,7 @@ export const Toolbar: FC<Props> = ({
 				/>
 			</div>
 			<div className="inline-flex flex-nowrap items-center">
-				<Label htmlFor="sort-by">Sort by:</Label>
+				<Label htmlFor="sort-by">{t('tooltip.sort-label')}:</Label>
 				<Select
 					defaultValue="none"
 					id="sort-by"

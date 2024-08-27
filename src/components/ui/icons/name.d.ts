@@ -6,6 +6,7 @@ export type IconName =
 	| 'chevron-up'
 	| 'cross-2'
 	| 'github-logo'
+	| 'globe'
 	| 'linkedin-logo'
 	| 'minus'
 	| 'plus'

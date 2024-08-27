@@ -43,4 +43,20 @@ const Tooltip: FC<Props> = ({ children, content, ...props }) => {
 
 Tooltip.displayName = 'Tooltip';
 
-export { Tooltip, TooltipContent };
+const ConditionalTooltip = ({
+	content,
+	shouldHide,
+	children,
+}: PropsWithChildren<{
+	shouldHide?: boolean;
+	content: ReactNode;
+}>) =>
+	shouldHide ? (
+		<>{children}</>
+	) : (
+		<Tooltip content={content}>{children}</Tooltip>
+	);
+
+ConditionalTooltip.displayName = 'ConditionalTooltip';
+
+export { Tooltip, TooltipContent, ConditionalTooltip };
