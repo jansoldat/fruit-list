@@ -13,6 +13,7 @@ fruits, allowing users to interact with the data in various ways.
 - [Key Features ](#key-features)
 - [Deployment](#deployment)
 - [Installing dependencies](#installing-dependencies)
+- [Getting Started](#getting-started)
 
 ## Key Features
 
@@ -81,6 +82,14 @@ pnpm icons:build
 
 ## Getting Started
 
+### Linting and Typecheck
+
+```
+pnpm run lint
+pnpm run ts
+pnpm run ts:watch # Run typecheck in watch mode
+```
+
 Unit testing is handled by React Testing Library and Vitest while End-to-End
 (E2E) Testing is conducted by Playwright.
 
@@ -118,6 +127,12 @@ If you wish to see the reports, run:
 
 ```
 pnpm run test:e2e:report
+```
+
+If you want to see the UI, run:
+
+```
+pnpm run test:e2e:dev
 ```
 
 ## Preparing for Deployment

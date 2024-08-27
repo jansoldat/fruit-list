@@ -1,17 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState, type FC } from 'react';
-import { useTranslation } from 'react-i18next';
+import type { FC } from 'react';
 import { getAllFruitQueryOptions } from '../api/queries';
 import { GroupView } from '../components/GroupView';
 import { Jar } from '../components/Jar';
+import { JarModal } from '../components/JarModal';
 import { List, type ListProps } from '../components/List';
 import { Toolbar } from '../components/Toolbar';
-import { Button, Layout } from '../components/ui';
-import { Modal } from '../components/ui/Modal';
+import { Layout } from '../components/ui';
 import { useGrouping } from '../hooks/useGrouping';
+import { useSearch } from '../hooks/useSearch';
 import { useSelectedFruit } from '../hooks/useSelectedFruit';
 import { useSorting } from '../hooks/useSorting';
-import { useSearch } from '../hooks/useSearch';
 
 type HomeProps = ListProps;
 
@@ -24,8 +23,7 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 	const { filteredData, handleSearchChange, searchTerm } = useSearch(data);
 	const { sortedData, handleSortChange, sorting } = useSorting(filteredData);
 	const { groupKey, handleGroupChange, groupedData } = useGrouping(sortedData);
-	const [isOpen, setModalOpen] = useState(false);
-	const { t } = useTranslation();
+
 	const { selected } = useSelectedFruit();
 
 	return (
@@ -52,27 +50,7 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 					<Jar />
 				</aside>
 			</div>
-			<Modal
-				isOpen={isOpen}
-				triggerElement={
-					selected.size === 0 ? null : (
-						<Button
-							className="fixed bottom-4 right-2 lg:hidden"
-							size="wide"
-							onClick={() => {
-								setModalOpen(true);
-							}}
-						>
-							{t('jar.open')}
-						</Button>
-					)
-				}
-				onOpenChange={newOpen => {
-					setModalOpen(newOpen);
-				}}
-			>
-				<Jar />
-			</Modal>
+			<JarModal isEmpty={!selected.size} />
 		</Layout>
 	);
 };
