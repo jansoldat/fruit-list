@@ -1,0 +1,57 @@
+{
+	"error": {
+		"500": {
+			"title": "Erreur interne du serveur.",
+			"message": "Nous travaillons déjà à résoudre le problème."
+		}
+	},
+	"navbar": {
+		"change-lang": "Passer à l'anglais"
+	},
+	"tooltip": {
+		"sort-label": "Trier par",
+		"group-label": "Grouper par",
+		"search-label": "Rechercher par",
+		"search-placeholder": "Rechercher..."
+	},
+	"group-view": {
+		"delete-group-tooltip": "Supprimer les éléments du groupe du groupe",
+		"add-button": "Ajouter un groupe",
+		"selected-label": "Sélectionné : {{selected}} / {{total}}"
+	},
+	"list": {
+		"item": {
+			"trash-tooltip": "Supprimer du bocal",
+			"minus-tooltip": "Diminuer de 1",
+			"disabled-tooltip": "Impossible d'avoir plus de 9 articles identiques dans le bocal",
+			"count-tooltip": "Nombre d'articles dans le bocal",
+			"add-button": "Ajout"
+		},
+		"toolbar-groupBy": {
+			"label-none": "Aucun",
+			"label-family": "Famille",
+			"label-genus": "Genre",
+			"label-order": "Ordre"
+		},
+		"toolbar-sortBy": {
+			"none": "Aucun",
+			"name-asc": "Nom A → Z",
+			"name-desc": "Nom Z → A",
+			"calories-asc": "Calories du plus bas",
+			"calories-desc": "Calories du plus élevé"
+		}
+	},
+	"jar": {
+		"open": "Ouvrir le bocal",
+		"empty-tooltip": "Le bocal est vide, ajoutez des fruits.",
+		"heading": "Votre bocal",
+		"empty": "Aucun fruit n'a été sélectionné. Veuillez sélectionner des fruits.",
+		"item": "{{count}}x {{name}} = Calories : {{totalCalories}} kcal",
+		"total": "Total des calories : {{totalCalories}} kcal",
+		"remove-all": "Tout supprimer"
+	},
+	"copyright": "© {{year}} Jan Soldát",
+	"appName": "FruitList",
+	"linkedin-tooltip": "Page LinkedIn de l'auteur",
+	"github-tooltip": "Page GitHub du projet"
+}
