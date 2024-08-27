@@ -1,3 +1,4 @@
+import { cn } from '~/src/common/utils';
 import { Button } from '../ui';
 import { canAddFruit } from '../utils/helpers';
 import { Picture, Subtitle, Title } from './ContentComponents';
@@ -16,7 +17,12 @@ export const FruitListItem = (props: FruitListItemProps) => {
 				};
 
 	return (
-		<li className="relative flex w-full min-w-48 max-w-56 flex-col items-center justify-center rounded-lg border bg-card p-3 py-6 shadow-lg">
+		<li
+			className={cn(
+				'relative flex w-full min-w-48 max-w-56 flex-col items-center justify-center rounded-lg border bg-card p-3 py-6 shadow-lg transition-colors hover:bg-accent/50',
+				{ 'bg-accent hover:bg-accent': (count ?? 0) > 0 },
+			)}
+		>
 			<CounterHeader count={count} onDelete={protectedFn(onDelete)} />
 
 			<Picture {...props} />

@@ -1,4 +1,8 @@
-import React, { type ElementRef, type ComponentPropsWithoutRef } from 'react';
+import React, {
+	type ElementRef,
+	type ComponentPropsWithoutRef,
+	type ReactNode,
+} from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { cn } from '~/src/common/utils';
 import { Icon } from './Icon';
@@ -10,6 +14,7 @@ interface AccordionItemProps
 interface AccordionTriggerProps
 	extends ComponentPropsWithoutRef<typeof Accordion.Trigger> {
 	className?: string;
+	controls?: ReactNode;
 }
 interface AccordionContentProps
 	extends ComponentPropsWithoutRef<typeof Accordion.Content> {
@@ -51,8 +56,8 @@ const AccordionItem = React.forwardRef<
 const AccordionTrigger = React.forwardRef<
 	ElementRef<typeof Accordion.Trigger>,
 	AccordionTriggerProps
->(({ children, className, ...props }, forwardedRef) => (
-	<Accordion.Header className="flex">
+>(({ children, className, controls, ...props }, forwardedRef) => (
+	<Accordion.Header className="relative flex">
 		<Accordion.Trigger
 			className={cn(
 				'group flex flex-1 cursor-pointer items-center border-b bg-muted/30 px-4 py-4 text-lg font-bold text-primary outline-none hover:bg-muted/40',
@@ -62,11 +67,12 @@ const AccordionTrigger = React.forwardRef<
 			ref={forwardedRef}
 		>
 			<Icon
-				className="text-primary transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
+				className="mr-4 text-primary transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
 				name="chevron-down"
 			/>
 			{children}
 		</Accordion.Trigger>
+		{controls}
 	</Accordion.Header>
 ));
 

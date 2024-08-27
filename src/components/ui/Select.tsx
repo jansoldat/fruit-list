@@ -39,7 +39,7 @@ export const Select = <T extends Item>({
 	return (
 		<Root disabled={isDisabled} value={value} onValueChange={onChange}>
 			<Trigger
-				className="mx-2 inline-flex h-10 w-44 items-center justify-between rounded-md border border-input px-1 text-sm font-medium leading-none text-primary shadow-lg shadow-black/10 outline-none ring-ring ring-offset-2 focus-within:ring-2 hover:bg-gray-100 focus-visible:ring-2 data-[placeholder]:text-red-400"
+				className="mx-2 inline-flex h-10 w-44 items-center justify-between rounded-md border border-input px-1 text-sm font-medium leading-none text-primary shadow-lg shadow-black/10 outline-none ring-ring ring-offset-2 focus-within:ring-2 hover:bg-gray-100 focus-visible:ring-2"
 				id={id}
 			>
 				<Value placeholder="Select a fruit…" />

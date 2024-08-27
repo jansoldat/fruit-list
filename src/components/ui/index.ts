@@ -5,3 +5,4 @@ export { Label } from './Label';
 export { Layout } from './Layout';
 export { Select } from './Select';
 export { Tooltip } from './Tooltip';
+export { Input } from './Input';

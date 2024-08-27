@@ -1,7 +1,7 @@
 import { useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { GroupKey, Sorting } from '../types';
-import { Label, Select } from './ui';
+import { Label, Select, Input } from './ui';
 
 interface Items<T> {
 	value: T;
@@ -14,6 +14,8 @@ interface Props {
 	onSortChange: (newKey: Sorting) => void;
 	isLoaded: boolean;
 	sorting: Sorting;
+	onSearchChange: (newTerm: string) => void;
+	searchTerm: string;
 }
 
 export const Toolbar: FC<Props> = ({
@@ -22,6 +24,8 @@ export const Toolbar: FC<Props> = ({
 	isLoaded,
 	onSortChange,
 	sorting,
+	onSearchChange,
+	searchTerm,
 }) => {
 	const { t } = useTranslation();
 	const grouping = useMemo<Items<GroupKey>[]>(
@@ -46,8 +50,24 @@ export const Toolbar: FC<Props> = ({
 	);
 
 	return (
-		<div className="inline-flex w-full gap-6">
-			<div>
+		<div className="flex w-full flex-wrap gap-4">
+			<div className="inline-flex flex-nowrap items-center">
+				<Label className="" htmlFor="search-by">
+					Search by:
+				</Label>
+				<Input
+					className="ml-2 w-56 shadow-lg"
+					id="search-by"
+					name="search"
+					placeholder="Search"
+					type="search"
+					value={searchTerm}
+					onChange={event => {
+						onSearchChange(event.currentTarget.value);
+					}}
+				/>
+			</div>
+			<div className="inline-flex flex-nowrap items-center">
 				<Label htmlFor="group-by">Group by:</Label>
 				<Select
 					defaultValue="none"
@@ -58,7 +78,7 @@ export const Toolbar: FC<Props> = ({
 					onChange={onGroupChange}
 				/>
 			</div>
-			<div>
+			<div className="inline-flex flex-nowrap items-center">
 				<Label htmlFor="sort-by">Sort by:</Label>
 				<Select
 					defaultValue="none"

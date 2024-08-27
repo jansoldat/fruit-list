@@ -11,6 +11,7 @@ import { Modal } from '../components/ui/Modal';
 import { useGrouping } from '../hooks/useGrouping';
 import { useSelectedFruit } from '../hooks/useSelectedFruit';
 import { useSorting } from '../hooks/useSorting';
+import { useSearch } from '../hooks/useSearch';
 
 type HomeProps = ListProps;
 
@@ -20,7 +21,8 @@ export const Home = () => {
 };
 
 const HomeView: FC<HomeProps> = ({ data, ...props }) => {
-	const { sortedData, handleSortChange, sorting } = useSorting(data);
+	const { filteredData, handleSearchChange, searchTerm } = useSearch(data);
+	const { sortedData, handleSortChange, sorting } = useSorting(filteredData);
 	const { groupKey, handleGroupChange, groupedData } = useGrouping(sortedData);
 	const [isOpen, setModalOpen] = useState(false);
 	const { t } = useTranslation();
@@ -32,8 +34,10 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 				<Toolbar
 					groupKey={groupKey}
 					isLoaded={props.status === 'success'}
+					searchTerm={searchTerm}
 					sorting={sorting}
 					onGroupChange={handleGroupChange}
+					onSearchChange={handleSearchChange}
 					onSortChange={handleSortChange}
 				/>
 			</div>

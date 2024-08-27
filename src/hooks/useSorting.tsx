@@ -31,9 +31,14 @@ export const useSorting = (data: FruitItem[] = []) => {
 
 	const sortedData = useMemo(() => sortData(data, sorting), [data, sorting]);
 
-	const handleSortChange = (newSort: Sorting) => {
-		setSorting(newSort);
-	};
+	const handleSortChange = useMemo(
+		() => (newSort: Sorting) => {
+			if (sorting !== undefined) {
+				setSorting(newSort);
+			}
+		},
+		[sorting],
+	);
 
 	return { sorting, handleSortChange, sortedData };
 };
