@@ -50,7 +50,7 @@ export const Toolbar: FC<Props> = ({
 	);
 
 	return (
-		<div className="flex w-full flex-wrap gap-4">
+		<div className="mb-8 flex w-full flex-row flex-wrap gap-4">
 			<div className="inline-flex flex-nowrap items-center">
 				<Label className="" htmlFor="search-by">
 					Search by:

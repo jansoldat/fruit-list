@@ -30,17 +30,16 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 
 	return (
 		<Layout>
-			<div className="mb-8 flex-row">
-				<Toolbar
-					groupKey={groupKey}
-					isLoaded={props.status === 'success'}
-					searchTerm={searchTerm}
-					sorting={sorting}
-					onGroupChange={handleGroupChange}
-					onSearchChange={handleSearchChange}
-					onSortChange={handleSortChange}
-				/>
-			</div>
+			<Toolbar
+				groupKey={groupKey}
+				isLoaded={props.status === 'success'}
+				searchTerm={searchTerm}
+				sorting={sorting}
+				onGroupChange={handleGroupChange}
+				onSearchChange={handleSearchChange}
+				onSortChange={handleSortChange}
+			/>
+
 			<div className="flex flex-row gap-6">
 				<main className="w-full lg:w-[70%]">
 					{groupKey === 'none' ? (
@@ -49,10 +48,8 @@ const HomeView: FC<HomeProps> = ({ data, ...props }) => {
 						<GroupView groupData={groupedData} />
 					)}
 				</main>
-				<aside className="hidden lg:block lg:w-[30%]">
-					<div className="h-[60vh] overflow-y-auto rounded bg-muted shadow-lg lg:sticky lg:top-0">
-						<Jar />
-					</div>
+				<aside className="hidden h-[60vh] overflow-y-auto rounded bg-muted shadow-lg lg:sticky lg:top-0 lg:block lg:w-[30%]">
+					<Jar />
 				</aside>
 			</div>
 			<Modal
