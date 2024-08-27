@@ -13,6 +13,8 @@ interface SelectedState {
 	addMultiple: (
 		items: { id: number; name: string; calories: number }[],
 	) => void;
+	removeAll: () => void;
+	removeMultiple: (ids: number[]) => void;
 }
 
 export const useSelectedFruit = create<SelectedState>(set => ({
@@ -59,6 +61,18 @@ export const useSelectedFruit = create<SelectedState>(set => ({
 				}
 			});
 
+			return { selected: newSelected };
+		});
+	},
+
+	removeAll: () => {
+		set({ selected: new Map() });
+	},
+
+	removeMultiple: (ids: number[]) => {
+		set(state => {
+			const newSelected = new Map(state.selected);
+			ids.forEach(id => newSelected.delete(id));
 			return { selected: newSelected };
 		});
 	},

@@ -33,7 +33,9 @@ const Tooltip: FC<Props> = ({ children, content, ...props }) => {
 		<TooltipPrimitive.Provider {...props}>
 			<TooltipPrimitive.Tooltip>
 				<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
-				<TooltipContent>{content}</TooltipContent>
+				<TooltipPrimitive.Portal>
+					<TooltipContent>{content}</TooltipContent>
+				</TooltipPrimitive.Portal>
 			</TooltipPrimitive.Tooltip>
 		</TooltipPrimitive.Provider>
 	);

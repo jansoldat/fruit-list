@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import { useSelectedFruit } from '../hooks/useSelectedFruit';
 import type { FruitItem } from '../types';
 import { List } from './List';
-import { Button } from './ui';
+import { Button, Icon, Tooltip } from './ui';
 import {
 	AccordionContent,
 	AccordionItem,
@@ -9,6 +10,7 @@ import {
 	AccordionTrigger,
 } from './ui/Accordion';
 import { FRUIT_COUNT_LIMIT } from './utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
 	groupData: Map<string, FruitItem[]>;
@@ -20,35 +22,74 @@ interface GroupItemProps {
 }
 
 const GroupItem = ({ id, fruits }: GroupItemProps) => {
-	const { addMultiple, selected } = useSelectedFruit();
-
-	const isDisabled = fruits.some(
-		({ id }) => (selected.get(id)?.count ?? 0) >= FRUIT_COUNT_LIMIT,
+	const { addMultiple, removeMultiple, selected } = useSelectedFruit();
+	const { t } = useTranslation();
+	const { isDisabled, selectedItemsCount } = useMemo(
+		() =>
+			fruits.reduce(
+				(acc, { id }) => {
+					const isSelected = selected.has(id);
+					if (isSelected) {
+						acc.selectedItemsCount++;
+						if ((selected.get(id)?.count ?? 0) >= FRUIT_COUNT_LIMIT)
+							acc.isDisabled = true;
+					}
+					return acc;
+				},
+				{ isDisabled: false, selectedItemsCount: 0 },
+			),
+		[fruits, selected],
 	);
 
 	return (
-		<AccordionItem value={id}>
-			<AccordionTrigger>
-				<div className="ml-4 flex w-full items-center justify-between">
-					{id}
-					<Button
-						className="ml-2"
-						disabled={isDisabled}
-						variant="outline"
-						onClick={e => {
-							addMultiple(
-								fruits.map(({ id, name, nutritions }) => ({
-									id,
-									name,
-									calories: nutritions.calories,
-								})),
-							);
-							e.stopPropagation();
-						}}
-					>
-						Add group ({fruits.length} items)
-					</Button>
-				</div>
+		<AccordionItem className="relative" value={id}>
+			<AccordionTrigger
+				controls={
+					<div className="absolute right-4 top-1/2 -translate-y-2/4">
+						<span className="mr-4 hidden font-light text-primary/50 sm:inline-block">
+							{t('group-view.selected-label', {
+								total: fruits.length,
+								selected: selectedItemsCount,
+							})}
+						</span>
+						<div className="inline-flex items-center">
+							<Button
+								disabled={isDisabled}
+								variant="outline"
+								onClick={e => {
+									addMultiple(
+										fruits.map(({ id, name, nutritions }) => ({
+											id,
+											name,
+											calories: nutritions.calories,
+										})),
+									);
+									e.stopPropagation();
+								}}
+							>
+								{t('group-view.add-button')}
+							</Button>
+							<Tooltip
+								content={t('group-view.delete-group-tooltip')}
+								disableHoverableContent={selectedItemsCount === 0}
+							>
+								<Button
+									className="ml-2 hidden md:block"
+									disabled={selectedItemsCount === 0}
+									size="icon"
+									variant="destructive"
+									onClick={() => {
+										removeMultiple(fruits.map(f => f.id));
+									}}
+								>
+									<Icon name="trash" />
+								</Button>
+							</Tooltip>
+						</div>
+					</div>
+				}
+			>
+				{id}
 			</AccordionTrigger>
 			<AccordionContent>
 				<List className="justify-start" data={fruits} status="success" />

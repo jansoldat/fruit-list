@@ -5,6 +5,11 @@
             "message": "We are already working to solve the problem."
         }
     },
+    "group-view": {
+        "delete-group-tooltip": "Remove group items from group",
+        "add-button": "Add group",
+        "selected-label": "Selected: {{selected}} / {{total}}"
+    },
     "list": {
         "item": {
             "trash-tooltip": "Delete from Jar",
@@ -32,7 +37,8 @@
         "heading": "Your Jar",
         "empty": "No fruit has been selected. Please select some fruit.",
         "item": "{{count}}x {{name}} = Calories: {{totalCalories}} kcal",
-        "total": "Total Calories: {{totalCalories}} kcal"
+        "total": "Total Calories: {{totalCalories}} kcal",
+        "remove-all": "Remove All"
     },
     "copyright": "© {{year}} Jan Soldát"
 }

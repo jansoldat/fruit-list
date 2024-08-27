@@ -5,7 +5,7 @@ import { Button, Icon } from './ui';
 import { canAddFruit } from './utils/helpers';
 
 export const Jar = () => {
-	const { selected, add, remove } = useSelectedFruit();
+	const { selected, add, remove, removeAll } = useSelectedFruit();
 	const { totalCalories } = useTotalCalories();
 	const { t } = useTranslation();
 	const isEmpty = selected.size === 0;
@@ -63,7 +63,12 @@ export const Jar = () => {
 			{isEmpty ? (
 				<div />
 			) : (
-				<h4 className="text-h4">{t('jar.total', { totalCalories })}</h4>
+				<div className="inline-flex justify-center gap-6">
+					<h4 className="text-h4">{t('jar.total', { totalCalories })}</h4>
+					<Button variant="destructive" onClick={removeAll}>
+						{t('jar.remove-all')}
+					</Button>
+				</div>
 			)}
 		</div>
 	);
