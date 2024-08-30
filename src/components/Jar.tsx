@@ -1,19 +1,25 @@
 import { useTranslation } from 'react-i18next';
+import { cn } from '../common/utils';
 import { useSelectedFruit } from '../hooks/useSelectedFruit';
 import { useTotalCalories } from '../hooks/useTotalCalories';
-import { Button, Icon } from './ui';
+import { Button, Icon, Tooltip } from './ui';
 import { canAddFruit } from './utils/helpers';
 
-export const Jar = () => {
+export const Jar = ({ className }: { className?: string }) => {
 	const { selected, add, remove, removeAll } = useSelectedFruit();
 	const { totalCalories } = useTotalCalories();
 	const { t } = useTranslation();
 	const isEmpty = selected.size === 0;
 
 	return (
-		<div className="flex h-full flex-col justify-between p-4 text-center">
+		<div
+			className={cn(
+				'flex h-full flex-col justify-between p-4 text-center text-primary',
+				className,
+			)}
+		>
 			<div>
-				<h3 className="text-h3">{t('jar.heading')}</h3>
+				<h3 className="text-h3 text-primary">{t('jar.heading')}</h3>
 				{!isEmpty && (
 					<ul className="mt-4 divide-y divide-secondary">
 						{Array.from(selected.entries()).map(
@@ -65,9 +71,11 @@ export const Jar = () => {
 			) : (
 				<div className="inline-flex flex-wrap items-center justify-center gap-6">
 					<h5 className="text-h5">{t('jar.total', { totalCalories })}</h5>
-					<Button variant="destructive" onClick={removeAll}>
-						{t('jar.remove-all')}
-					</Button>
+					<Tooltip content={t('jar.remove-all')}>
+						<Button size="icon" variant="destructive" onClick={removeAll}>
+							<Icon name="trash" />
+						</Button>
+					</Tooltip>
 				</div>
 			)}
 		</div>

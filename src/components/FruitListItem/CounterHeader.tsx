@@ -43,7 +43,7 @@ export const CounterHeader: FC<CounterProps> = ({ count, onDelete }) => {
 				</Button>
 			</Tooltip>
 			<Tooltip content={t(`list.item.count-tooltip`)}>
-				<div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-background text-sm font-medium shadow-md outline-none">
+				<div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-background text-sm font-medium text-primary shadow-md outline-none">
 					{count}
 				</div>
 			</Tooltip>

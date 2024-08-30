@@ -2,80 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-      --font-sans: Nunito Sans, Nunito Sans Fallback;
-      /* --font-mono: here if you got it... */
-
-      /* prefixed with foreground because it should look good on the background */
-      --foreground-destructive: 345 82.7% 40.8%;
-
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
-
-      --muted: 210 40% 93%;
-      --muted-foreground: 215.4 16.3% 30%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
-
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
-
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --input-invalid: 0 84.2% 60.2%;
-
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
-
-      --secondary: 210 20% 83%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-
-      --accent: 210 40% 90%;
-      --accent-foreground: 222.2 47.4% 11.2%;
-
-      --destructive: 0 70% 50%;
-      --destructive-foreground: 210 40% 98%;
-
-      --ring: 215 20.2% 65.1%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
-
-      /* prefixed with foreground because it should look good on the background */
-      --foreground-destructive: -4 84% 60%;
-
-      --muted: 217.2 32.6% 12%;
-      --muted-foreground: 215 20.2% 65.1%;
-
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
-
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
-
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --input-invalid: 0 62.8% 30.6%;
-
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
-
-      --secondary: 217.2 20% 24%;
-      --secondary-foreground: 210 40% 98%;
-
-      --accent: 217.2 32.6% 10%;
-      --accent-foreground: 210 40% 98%;
-
-      --destructive: 0 60% 40%;
-      --destructive-foreground: 0 85.7% 97.3%;
-
-      --ring: 217.2 32.6% 60%;
-    }
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: hsl(var(--background));
 }
 
+@layer base {
+	:root {
+		--font-sans: Nunito Sans, Nunito Sans Fallback;
+		/* --font-mono: here if you got it... */
+
+		/* prefixed with foreground because it should look good on the background */
+		--foreground-destructive: 0 100% 40%;
+
+		--background: 60 100% 99%;
+		--foreground: 220 50% 10%;
+
+		--muted: 120 30% 95%;
+		--muted-foreground: 220 20% 30%;
+
+		--popover: 60 100% 99%;
+		--popover-foreground: 220 50% 10%;
+
+		--card: 60 100% 99%;
+		--card-foreground: 220 50% 10%;
+
+		--border: 120 30% 85%;
+		--input: 120 30% 85%;
+		--input-invalid: 0 100% 65%;
+
+		--primary: 120 60% 45%;
+		--primary-foreground: 60 100% 99%;
+
+		--secondary: 45 100% 75%;
+		--secondary-foreground: 220 50% 10%;
+
+		--accent: 121 22% 48%;
+		--accent-foreground: 60 100% 99%;
+
+		--destructive: 0 100% 50%;
+		--destructive-foreground: 60 100% 99%;
+
+		--ring: 120 30% 65%;
+
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 220 50% 10%;
+		--foreground: 60 100% 99%;
+
+		--foreground-destructive: 0 100% 70%;
+
+		--muted: 220 30% 20%;
+		--muted-foreground: 40 70% 80%;
+
+		--popover: 220 50% 10%;
+		--popover-foreground: 60 100% 99%;
+
+		--card: 220 50% 10%;
+		--card-foreground: 60 100% 99%;
+
+		--border: 120 30% 25%;
+		--input: 120 30% 25%;
+		--input-invalid: 0 70% 35%;
+
+		--primary: 120 70% 40%;
+		--primary-foreground: 60 100% 99%;
+
+		--secondary: 45 100% 50%;
+		--secondary-foreground: 220 50% 10%;
+
+		--accent: 121 22% 48%;
+		--accent-foreground: 60 100% 99%;
+
+		--destructive: 0 80% 45%;
+		--destructive-foreground: 60 100% 99%;
+
+		--ring: 120 30% 50%;
+	}
+}

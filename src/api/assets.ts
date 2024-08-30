@@ -69,7 +69,6 @@ const getImagePath = (name: string) => {
 export const getAssetUrl = (name: string) => {
 	const imagePath = getImagePath(name.toLowerCase().replace(' ', '-'));
 	if (!imagePath) {
-		console.log(name);
 		return defaultImage;
 	}
 	return `${CLOUDINARY_URL}/${imagePath}`;

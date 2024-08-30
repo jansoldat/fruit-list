@@ -14,6 +14,7 @@ import {
 } from '@radix-ui/react-select';
 import { Icon } from './Icon';
 import type { ReactNode } from 'react';
+import { cn } from '~/src/common/utils';
 
 interface Item {
 	label: ReactNode;
@@ -27,6 +28,7 @@ interface Props<T extends Item, K> {
 	id: string;
 	isDisabled?: boolean;
 	onChange: (value: K) => void;
+	className?: string;
 }
 
 export const Select = <T extends Item>({
@@ -35,12 +37,16 @@ export const Select = <T extends Item>({
 	value,
 	id,
 	isDisabled,
+	className,
 }: Props<T, T['value']>) => {
 	return (
 		<Root disabled={isDisabled} value={value} onValueChange={onChange}>
 			<Trigger
-				className="mx-2 inline-flex h-10 w-44 items-center justify-between rounded-md border border-input px-1 text-sm font-medium leading-none text-primary shadow-lg shadow-black/10 outline-none ring-ring ring-offset-2 focus-within:ring-2 hover:bg-gray-100 focus-visible:ring-2"
 				id={id}
+				className={cn(
+					'hover:secondary inline-flex h-10 w-44 items-center justify-between rounded-md border border-input bg-background px-1 text-sm font-medium leading-none text-primary shadow-md outline-none ring-ring ring-offset-2 focus-within:ring-2 hover:bg-secondary hover:text-secondary-foreground focus-visible:ring-2',
+					className,
+				)}
 			>
 				<Value placeholder="Select a fruit…" />
 				<SelectIcon>
@@ -59,7 +65,7 @@ export const Select = <T extends Item>({
 						{items.map(item => (
 							<Item
 								key={item.value}
-								className="flex items-center justify-between rounded-sm px-2 py-1 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+								className="flex items-center justify-between rounded-sm px-2 py-1 text-sm outline-none focus:bg-secondary focus:text-secondary-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
 								value={item.value}
 							>
 								<ItemText>{item.label}</ItemText>

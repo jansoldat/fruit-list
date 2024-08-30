@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"system": "Système",
+		"light": "Lumineux",
+		"dark": "Sombre"
+	},
 	"error": {
 		"500": {
 			"title": "Erreur interne du serveur.",

@@ -3,6 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme.js';
 import { extendedTheme } from './src/extendedTheme';
 
 export default {
+	darkMode: 'class',
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	container: {
 		center: true,

@@ -11,9 +11,11 @@ import {
 } from './ui/Accordion';
 import { FRUIT_COUNT_LIMIT } from './utils/helpers';
 import { useTranslation } from 'react-i18next';
+import { cn } from '../common/utils';
 
 interface Props {
 	groupData: Map<string, FruitItem[]>;
+	className?: string;
 }
 
 interface GroupItemProps {
@@ -92,15 +94,32 @@ const GroupItem = ({ id, fruits }: GroupItemProps) => {
 				{id}
 			</AccordionTrigger>
 			<AccordionContent>
-				<List className="justify-start" data={fruits} status="success" />
+				<List
+					className="min-[500px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+					data={fruits}
+					status="success"
+				/>
 			</AccordionContent>
 		</AccordionItem>
 	);
 };
 
-export const GroupView = ({ groupData }: Props) => {
+export const GroupView = ({ groupData, className }: Props) => {
+	const { t } = useTranslation();
+
+	if (groupData.size === 0) {
+		return (
+			<div className={cn('flex w-full items-center justify-center', className)}>
+				<p className="text-lg text-primary">{t('list.no-data')}</p>
+			</div>
+		);
+	}
+
 	return (
-		<AccordionRoot className="w-full rounded-md bg-background" type="multiple">
+		<AccordionRoot
+			className={cn('w-full rounded-md bg-background', className)}
+			type="multiple"
+		>
 			{Array.from(groupData.entries()).map(([key, fruits]) => (
 				<GroupItem key={key} fruits={fruits} id={key} />
 			))}
