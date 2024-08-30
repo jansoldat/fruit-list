@@ -5,10 +5,6 @@ import { useMemo } from 'react';
 
 export const ThemeToggle = () => {
 	const { setThemePreference, currentThemePreference } = useTheme();
-	console.log(
-		'🚀 ~ ThemeToggle ~ currentThemePreference:',
-		currentThemePreference,
-	);
 	const { t } = useTranslation();
 
 	const iconMap = useMemo(

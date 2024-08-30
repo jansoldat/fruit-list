@@ -50,13 +50,13 @@ export const Toolbar: FC<Props> = ({
 	);
 
 	return (
-		<div className="mb-8 flex w-full flex-row flex-wrap gap-4">
-			<div className="inline-flex flex-nowrap items-center">
-				<Label className="" htmlFor="search-by">
+		<div className="mb-8 flex flex-wrap justify-center gap-4 sm:justify-start">
+			<div className="flex w-full min-w-60 max-w-80 flex-col sm:w-auto">
+				<Label className="mb-2" htmlFor="search-by">
 					{t('tooltip.search-label')}:
 				</Label>
 				<Input
-					className="ml-2 w-56 shadow-lg"
+					className="w-full shadow-lg"
 					id="search-by"
 					name="search"
 					placeholder={t('tooltip.search-placeholder')}
@@ -67,9 +67,12 @@ export const Toolbar: FC<Props> = ({
 					}}
 				/>
 			</div>
-			<div className="inline-flex flex-nowrap items-center">
-				<Label htmlFor="group-by">{t('tooltip.group-label')}:</Label>
+			<div className="flex w-full min-w-60 max-w-80 flex-col sm:w-auto">
+				<Label className="mb-2" htmlFor="group-by">
+					{t('tooltip.group-label')}:
+				</Label>
 				<Select
+					className="w-full"
 					defaultValue="none"
 					id="group-by"
 					isDisabled={!isLoaded}
@@ -78,9 +81,12 @@ export const Toolbar: FC<Props> = ({
 					onChange={onGroupChange}
 				/>
 			</div>
-			<div className="inline-flex flex-nowrap items-center">
-				<Label htmlFor="sort-by">{t('tooltip.sort-label')}:</Label>
+			<div className="flex w-full min-w-60 max-w-80 flex-col sm:w-auto">
+				<Label className="mb-2" htmlFor="sort-by">
+					{t('tooltip.sort-label')}:
+				</Label>
 				<Select
+					className="w-full"
 					defaultValue="none"
 					id="sort-by"
 					isDisabled={!isLoaded}
@@ -88,11 +94,6 @@ export const Toolbar: FC<Props> = ({
 					value={sorting}
 					onChange={onSortChange}
 				/>
-			</div>
-			<div className="inline-flex flex-nowrap items-center">
-				<Label className="" htmlFor="calories">
-					{t('tooltip.search-label')}:
-				</Label>
 			</div>
 		</div>
 	);

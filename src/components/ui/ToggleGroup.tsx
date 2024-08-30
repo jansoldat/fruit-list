@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '~/src/common/utils';
 
 const toggleGroupItemClasses = cva(
-	'flex items-center justify-center bg-background text-primary leading-4 first:rounded-l last:rounded-r focus:z-10 focus:shadow-lg focus:outline-none hover:bg-accent hover:text-primary  data-[state=on]:bg-muted data-[state=on]:text-primary',
+	'flex items-center justify-center bg-background text-primary leading-4 first:rounded-l last:rounded-r focus:z-10 focus:shadow-lg focus:outline-none hover:bg-secondary hover:text-secondary-foreground data-[state=on]:bg-secondary/60 data-[state=on]:text-secondary-foreground',
 	{
 		variants: {
 			size: {
