@@ -23,14 +23,14 @@ export const FruitListItem = (props: FruitListItemProps) => {
 	return (
 		<li
 			className={cn(
-				'relative flex w-full min-w-48 max-w-56 flex-col items-center justify-center rounded-lg border bg-card p-3 py-6 shadow-lg transition-colors hover:bg-accent/50',
-				{ 'bg-accent hover:bg-accent': (count ?? 0) > 0 },
+				'relative flex w-full min-w-48 max-w-56 flex-col items-center justify-center rounded-lg border bg-card p-3 py-6 shadow-lg transition-colors hover:bg-primary/10',
+				{ '': (count ?? 0) > 0 },
 			)}
 		>
 			<CounterHeader count={count} onDelete={protectedFn(onDelete)} />
 
 			<Picture {...props} />
-			<h5 className="mt-3 overflow-hidden text-ellipsis whitespace-nowrap text-caption">
+			<h5 className="mt-3 overflow-hidden text-ellipsis whitespace-nowrap text-caption text-primary">
 				<Title {...props} />
 			</h5>
 			<span className="mb-4 mt-1 text-body-sm font-light text-primary">

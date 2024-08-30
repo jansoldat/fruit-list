@@ -9,33 +9,34 @@ export const Layout = ({ children }: PropsWithChildren) => {
 	const { t } = useTranslation();
 
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-between bg-background">
+		<>
 			<header className="w-full bg-primary p-4 py-6">
 				<Navbar />
 			</header>
-			<div className="w-full flex-1 flex-col p-8">{children}</div>
-			<footer className="w-full bg-secondary p-4 text-center">
+			<main className="flex-1 p-8 text-primary">{children}</main>
+			<footer className="w-full bg-primary p-4 text-center text-primary-foreground">
 				<p>{t('copyright', { year })}</p>
 				<Tooltip content={t('github-tooltip')}>
 					<a
 						className="mr-3 text-3xl"
 						href="https://github.com/jansoldat/fruit-list.git"
+						rel="noopener noreferrer"
 						target="_blank"
 					>
 						<Icon name="github-logo" />
 					</a>
 				</Tooltip>
-
 				<Tooltip content={t('linkedin-tooltip')}>
 					<a
-						className="text-3xl text-blue-700"
+						className="text-3xl"
 						href="https://www.linkedin.com/in/jan-soldat68/"
+						rel="noopener noreferrer"
 						target="_blank"
 					>
 						<Icon name="linkedin-logo" />
 					</a>
 				</Tooltip>
 			</footer>
-		</div>
+		</>
 	);
 };

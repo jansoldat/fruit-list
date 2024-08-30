@@ -5,6 +5,7 @@ import App from './App';
 import './styles/tailwind.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './common/i18n';
+import { ThemeProvider } from './hooks/useTheme';
 
 const enableMocking = async () => {
 	if (
@@ -26,7 +27,9 @@ enableMocking()
 			root.render(
 				<React.StrictMode>
 					<React.Suspense fallback="loading...">
-						<App />
+						<ThemeProvider>
+							<App />
+						</ThemeProvider>
 					</React.Suspense>
 				</React.StrictMode>,
 			);

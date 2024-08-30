@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../common/utils';
-import { Jar } from '../components/Jar';
-import { Button, ConditionalTooltip } from '../components/ui';
-import { Modal } from '../components/ui/Modal';
+import { Button, ConditionalTooltip, Modal } from '../components/ui';
+import { Jar } from './Jar';
 
 interface Props {
 	isEmpty: boolean;
@@ -24,7 +23,7 @@ export const JarModal = ({ isEmpty }: Props) => {
 						<span className="w-full py-5">
 							<Button
 								disabled={isEmpty}
-								size="wide"
+								size="lg"
 								className={cn({
 									'disabled:bg-slate-400 disabled:opacity-100': isEmpty,
 								})}
@@ -35,7 +34,7 @@ export const JarModal = ({ isEmpty }: Props) => {
 					</ConditionalTooltip>
 				</div>
 			}
-			onOpenChange={newOpen => {
+			onOpenChange={(newOpen: boolean) => {
 				if (!isEmpty || !newOpen) {
 					setModalOpen(newOpen);
 				}

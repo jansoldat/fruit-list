@@ -23,6 +23,7 @@ export const useSelectedFruit = create<SelectedState>(set => ({
 	add: (id: number, name: string, calories: number) => {
 		set(state => {
 			const newSelected = new Map(state.selected);
+
 			if (newSelected.has(id)) {
 				const existing = newSelected.get(id)!;
 				newSelected.set(id, { ...existing, count: existing.count + 1 });

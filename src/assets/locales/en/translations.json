@@ -1,4 +1,9 @@
 {
+	"theme": {
+		"system": "System",
+		"light": "Light",
+		"dark": "Dark"
+	},
 	"error": {
 		"500": {
 			"title": "Internal Server Error.",
@@ -20,6 +25,7 @@
 		"selected-label": "Selected: {{selected}} / {{total}}"
 	},
 	"list": {
+		"no-data": "No fruits found",
 		"item": {
 			"trash-tooltip": "Delete from Jar",
 			"minus-tooltip": "Decrease by 1",

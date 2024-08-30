@@ -89,6 +89,11 @@ export const Toolbar: FC<Props> = ({
 					onChange={onSortChange}
 				/>
 			</div>
+			<div className="inline-flex flex-nowrap items-center">
+				<Label className="" htmlFor="calories">
+					{t('tooltip.search-label')}:
+				</Label>
+			</div>
 		</div>
 	);
 };

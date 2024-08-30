@@ -7,7 +7,10 @@ export type IconName =
 	| 'cross-2'
 	| 'github-logo'
 	| 'globe'
+	| 'laptop'
 	| 'linkedin-logo'
 	| 'minus'
+	| 'moon'
 	| 'plus'
+	| 'sun'
 	| 'trash';
